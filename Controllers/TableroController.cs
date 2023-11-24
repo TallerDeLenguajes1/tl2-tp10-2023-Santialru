@@ -46,5 +46,44 @@ namespace tp9.controllers
             var tablero = manejo.ObtenerTableroPorId(id);
             return View(tablero);
         }
+
+        [HttpPost]
+        [Route("EditarTablero")] //  dataBaseLocked
+        public IActionResult EditarTablero(Tablero tablero)
+        {
+            var tableroMod = manejo.ObtenerTableroPorId(tablero.Id1);
+            tableroMod.Nombre1 = tablero.Nombre1;
+            tableroMod.Descripcion1 = tablero.Descripcion1;
+            tableroMod.IdUsuarioPropietario1 = tablero.IdUsuarioPropietario1;
+            manejo.ModificarTablero(tablero.Id1,tableroMod);
+            return RedirectToAction("Index");
+
+        }
+
+                [HttpGet]
+        [Route("CrearTablero")]
+        public IActionResult CrearTablero()
+        {
+            return View(new Tablero());
+        }
+
+        [HttpPost]
+        [Route("CrearTablero")]
+        public IActionResult CrearTablero(Tablero u)
+        {
+            manejo.CrearTablero(u);
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        [Route("EliminarTablero")]
+        public IActionResult EliminarTablero(int id)
+        {
+            manejo.EliminarTablero(id);
+            return RedirectToAction("Index");
+
+        }
+        
     }
 }
