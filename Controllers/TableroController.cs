@@ -51,11 +51,11 @@ namespace tp9.controllers
         [Route("EditarTablero")] //  dataBaseLocked
         public IActionResult EditarTablero(Tablero tablero)
         {
-            var tableroMod = manejo.ObtenerTableroPorId(tablero.Id1);
-            tableroMod.Nombre1 = tablero.Nombre1;
-            tableroMod.Descripcion1 = tablero.Descripcion1;
-            tableroMod.IdUsuarioPropietario1 = tablero.IdUsuarioPropietario1;
-            manejo.ModificarTablero(tablero.Id1,tableroMod);
+            var tableroMod = manejo.ObtenerTableroPorId(tablero.Id);
+            tableroMod.Nombre = tablero.Nombre;
+            tableroMod.Descripcion = tablero.Descripcion;
+            tableroMod.IdUsuarioPropietario = tablero.IdUsuarioPropietario;
+            manejo.ModificarTablero(tablero.Id,tableroMod);
             return RedirectToAction("Index");
 
         }

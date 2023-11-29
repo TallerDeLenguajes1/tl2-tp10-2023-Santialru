@@ -20,10 +20,10 @@ public class TableroRepository : ITableroRepository
             connection.Open();
             var command = new SQLiteCommand(query, connection);
             
-            command.Parameters.Add(new SQLiteParameter("@id", tablero.Id1));
-            command.Parameters.Add(new SQLiteParameter("@id_usuario_propietario", tablero.IdUsuarioPropietario1));
-            command.Parameters.Add(new SQLiteParameter("@nombre", tablero.Nombre1));
-            command.Parameters.Add(new SQLiteParameter("@descripcion", tablero.Descripcion1));
+            command.Parameters.Add(new SQLiteParameter("@id", tablero.Id));
+            command.Parameters.Add(new SQLiteParameter("@id_usuario_propietario", tablero.IdUsuarioPropietario));
+            command.Parameters.Add(new SQLiteParameter("@nombre", tablero.Nombre));
+            command.Parameters.Add(new SQLiteParameter("@descripcion", tablero.Descripcion));
 
             command.ExecuteNonQuery();
 
@@ -35,7 +35,7 @@ public class TableroRepository : ITableroRepository
     {
         SQLiteConnection connection = new SQLiteConnection(cadenaConexion);
         SQLiteCommand command = connection.CreateCommand();
-        command.CommandText =  $"UPDATE tablero SET id = '{tablero.Id1}', id_usuario_propietario = '{tablero.IdUsuarioPropietario1}', nombre = '{tablero.Nombre1}', descripcion = '{tablero.Descripcion1}';";
+        command.CommandText =  $"UPDATE tablero SET id = '{tablero.Id}', id_usuario_propietario = '{tablero.IdUsuarioPropietario}', nombre = '{tablero.Nombre}', descripcion = '{tablero.Descripcion}';";
         connection.Open();
         command.ExecuteNonQuery();
         connection.Close();
@@ -53,10 +53,10 @@ public class TableroRepository : ITableroRepository
         {
             while (reader.Read())
             {
-                tablero.Id1 = Convert.ToInt32(reader["id"]);
-                tablero.IdUsuarioPropietario1 = Convert.ToInt32(reader["id_usuario_propietario"]);
-                tablero.Nombre1 = reader["nombre"].ToString();
-                tablero.Descripcion1 = reader["descripcion"].ToString();
+                tablero.Id = Convert.ToInt32(reader["id"]);
+                tablero.IdUsuarioPropietario = Convert.ToInt32(reader["id_usuario_propietario"]);
+                tablero.Nombre = reader["nombre"].ToString();
+                tablero.Descripcion = reader["descripcion"].ToString();
             }
         }
         connection.Close();
@@ -78,10 +78,10 @@ public class TableroRepository : ITableroRepository
                 while (reader.Read())
                 {
                     Tablero tablero = new Tablero();
-                    tablero.Id1 = Convert.ToInt32(reader["id"]);
-                    tablero.IdUsuarioPropietario1 = Convert.ToInt32(reader["id_usuario_propietario"]);
-                    tablero.Nombre1 = reader["nombre"].ToString();
-                    tablero.Descripcion1 = reader["descripcion"].ToString();
+                    tablero.Id = Convert.ToInt32(reader["id"]);
+                    tablero.IdUsuarioPropietario = Convert.ToInt32(reader["id_usuario_propietario"]);
+                    tablero.Nombre = reader["nombre"].ToString();
+                    tablero.Descripcion = reader["descripcion"].ToString();
                     tableros.Add(tablero);
                 }
             }
@@ -105,10 +105,10 @@ public class TableroRepository : ITableroRepository
             {
                 var tablero = new Tablero
                 {
-                    Id1 = Convert.ToInt32(reader["id"]),
-                    IdUsuarioPropietario1 = Convert.ToInt32(reader["id_usuario_propietario"]),
-                    Nombre1 = reader["nombre"].ToString(),
-                    Descripcion1 = reader["descripcion"].ToString()
+                    Id = Convert.ToInt32(reader["id"]),
+                    IdUsuarioPropietario = Convert.ToInt32(reader["id_usuario_propietario"]),
+                    Nombre = reader["nombre"].ToString(),
+                    Descripcion = reader["descripcion"].ToString()
                 };
                 tableros.Add(tablero);
             }

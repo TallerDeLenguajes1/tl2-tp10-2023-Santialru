@@ -1,28 +1,24 @@
 namespace tp9.Models;
 public class Tarea
 {
-    
+    public enum EstadoTarea
+    {
+        Ideas,
+        ToDo,
+        Doing,
+        Review,
+        Done
+    }
 
-    private int id;
-    private string nombre;
-    private string descripcion;
-    private string color;
-    private EstadoTarea estado;
-    private int idUsuarioPropietario;
 
-    public int Id { get => id; set => id = value; }
-    public string Nombre { get => nombre; set => nombre = value; }
-    public string Descripcion { get => descripcion; set => descripcion = value; }
-    public string Color { get => color; set => color = value; }
-    public EstadoTarea Estado { get => estado; set => estado = value; }
-    public int IdUsuarioPropietario { get => idUsuarioPropietario; set => idUsuarioPropietario = value; }
+    public int Id{get;set;}
+    public int IdTablero{get;set;}
+    public string Nombre{get;set;}
+    public string Descripcion{get;set;}
+    public string Color{get;set;}
+    public EstadoTarea Estado{get;set;}
+    public int IdUsuarioPropietario{get;set;}
+
+  
 }
 
-public enum EstadoTarea
-{
-    Ideas,
-    ToDo,
-    Doing,
-    Review,
-    Done
-}
