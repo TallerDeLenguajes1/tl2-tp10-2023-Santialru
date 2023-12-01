@@ -9,73 +9,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = tl2_tp10_2023_Santialru
 build_property.RootNamespace = tl2_tp10_2023_Santialru
-build_property.ProjectDir = C:\Users\santi\OneDrive\Escritorio\tp10_taller\tl2-tp10-2023-Santialru\
+build_property.ProjectDir = c:\Users\santi\OneDrive\Escritorio\tp10_taller\tl2-tp10-2023-Santialru\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\santi\OneDrive\Escritorio\tp10_taller\tl2-tp10-2023-Santialru
+build_property.MSBuildProjectDirectory = c:\Users\santi\OneDrive\Escritorio\tp10_taller\tl2-tp10-2023-Santialru
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Home/Index.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Home/Privacy.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Shared/Error.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tablero/@CrearTablero.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tablero/@CrearTablero.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFibGVyb1xAQ3JlYXJUYWJsZXJvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tablero/EditarTablero.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tablero/EditarTablero.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFibGVyb1xFZGl0YXJUYWJsZXJvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tablero/Index.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tablero/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFibGVyb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tarea/CrearTarea.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tarea/CrearTarea.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWFcQ3JlYXJUYXJlYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tarea/EditarTarea.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tarea/EditarTarea.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWFcRWRpdGFyVGFyZWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tarea/Index.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Tarea/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFyZWFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Usuario/CrearUsuario.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Usuario/CrearUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhclVzdWFyaW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Usuario/EditarUsuario.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Usuario/EditarUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xFZGl0YXJVc3VhcmlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Usuario/Index.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Usuario/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/_ViewImports.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/_ViewStart.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Shared/_Layout.cshtml]
+[c:/Users/santi/OneDrive/Escritorio/tp10_taller/tl2-tp10-2023-Santialru/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-pukr2ptsww
