@@ -1,22 +1,29 @@
-@using tp9.Models;
-@model Tarea;
+@using tl2_tp10_2023_Santialru.Models;
+@using tl2_tp10_2023_Santialru.ViewModels;
+@section Scripts{<partial name="_ValidationScriptsPartial"/>}
+@model EditarTareaViewModel;
 
 <form asp-controller="Tarea" asp-action="EditarTarea" method="post">
     <input type="hidden" asp-for="Id" />
 
     <div class="mb-3">
-        <label class="form-label" asp-for="IdTablero">ID Tablero: </label>
-        <input asp-for="IdTablero" class="form-control"/>
+        <input type="hidden" asp-for="IdTablero" class="form-control"/>
+        <label class="form-label" asp-for="NombreTablero">Nombre Tablero</label>
+        <input asp-for="NombreTablero" class="form-control"/>
+        <span asp-validation-for="@Model.NombreTablero" class="text-danger"></span>
+
     </div>
 
     <div class="mb-3">
-        <label class="form-label" asp-for="Nombre">Nombre: </label>
+        <label class="form-label" asp-for="Nombre">Nombre Tarea: </label>
         <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
+
     </div>
 
     <div class="mb-3">
-        <label class="form-label" asp-for="Estado">Estado: </label>
-        <select asp-for="Estado" class="form-control">
+        <label class="form-label" asp-for="EstadoT">Estado: </label>
+        <select asp-for="EstadoT" class="form-control">
             <option value="">Seleccione un estado</option>
             @foreach (var estado in Enum.GetValues(typeof(Tarea.EstadoTarea)))
             {
@@ -36,9 +43,11 @@
     </div>
 
     <div class="mb-3">
-        <label class="form-label" asp-for="IdUsuarioPropietario">Usuario Asignado: </label>
-        <input asp-for="IdUsuarioPropietario" class="form-control" />
+        <input type="hidden" asp-for="IdUsuarioAsignado" class="form-control" />
+        <label class="form-label" asp-for="NombreUsuarioAsignado">Nombre Usuario Asignado: </label>
+        <input asp-for="NombreUsuarioAsignado" class="form-control"/>
+
     </div>
 
-    <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+    <button class="btn btn-primary" type="submit">Editar Tarea</button>
 </form>

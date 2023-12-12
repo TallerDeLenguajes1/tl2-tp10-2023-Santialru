@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using tp9.Models;
-namespace tp9.repos;
+using tl2_tp10_2023_Santialru.Models;
+namespace tl2_tp10_2023_Santialru.repos;
 public interface ITableroRepository
 {
     public void CrearTablero(Tablero tablero);
@@ -9,4 +9,6 @@ public interface ITableroRepository
     public List<Tablero> ListarTableros();
     public List<Tablero> ListarTablerosDeUsuario(int idUsuario);
     public void EliminarTablero(int id);
+    Tablero ObtenerTableroPorNombre(string nombre);
+
 }

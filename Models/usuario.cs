@@ -2,28 +2,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tp11.ViewModels;
+using tl2_tp10_2023_Santialru.ViewModels;
 
-namespace tp9.Models;
-public enum NivelDeAcceso
+namespace tl2_tp10_2023_Santialru.Models;
+public enum Rol
 {
-    admin = 1,
-    operador = 2
+    admin,
+    operador
 }
 public class Usuario
 {
-    public NivelDeAcceso NivelDeAcceso {get;set;}
+    public Rol Rol {get;set;}
     public int Id {get;set;}
     public string NombreDeUsuario {get;set;}
+    public string Contrasenia {get;set;}
 
-    public Usuario(LoginViewModel LoginViewModel)
-    {
-        NombreDeUsuario = LoginViewModel.NombreDeUsuario;
-        Contrasenia = LoginViewModel.Contrasenia;
+
+    public Usuario(string nombre,string contrasenia,Rol Rol){
+        this.Id = 0;
+        this.NombreDeUsuario = nombre;
+        this.Contrasenia = contrasenia;
+        this.Rol = Rol;
     }
-
-    public Usuario()
-    {
+    public Usuario(){
+        this.Id = 0;
+        this.Contrasenia = "";
+        this.NombreDeUsuario = "";
+        this.Rol = 0;
     }
 
 }

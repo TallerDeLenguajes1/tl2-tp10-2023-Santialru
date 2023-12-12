@@ -1,4 +1,4 @@
-@using tp9.Models;
+@using tl2_tp10_2023_Santialru.Models;
 @model Usuario
 
 <form asp-controller="Usuario" asp-action="EditarUsuario" method="post">
@@ -7,9 +7,23 @@
     <div class="mb-3">
         <label class="form-label" asp-for="NombreDeUsuario">Nombre de Usuario: </label>
         <input asp-for="NombreDeUsuario" class="form-control" />
+        <span asp-validation-for="@Model.NombreDeUsuario" class="text-danger"></span>
     </div>
-
+    <div class="mb-3">
+        <label class="form-label" asp-for="Rol">Rol: </label>
+        <select asp-for="Rol" class="form-control">
+            @foreach (var rol in Enum.GetValues(typeof(Rol)))
+            {
+                <option value="@rol">@rol</option>
+            }
+        </select>
+    </div>
    
+    <div class="mb-3">
+        <label class="form-label" asp-for="Contrasenia">Contraseña: </label>
+        <input asp-for="Contrasenia" class="form-control" />
+        <p>Si este campo queda en blanco se sigue usando la Contraseña anterior</p>
+    </div>
 
     <button class="btn btn-primary" type="submit">Guardar Cambios</button>
 </form>

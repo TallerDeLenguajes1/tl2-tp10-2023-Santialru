@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.SQLite;
 using System.Threading.Tasks;
-using tp9.Models;
+using tl2_tp10_2023_Santialru.Models;
 
 
-namespace tp9.repos;
+namespace tl2_tp10_2023_Santialru.repos;
 
 public class TableroRepository : ITableroRepository
 {
-    private string cadenaConexion = "Data Source=DB/kanban.db;Cache=Shared";
+    private string cadenaConexion = "Data Source=DB/kanbanV2.db;Cache=Shared";
 
     public void CrearTablero(Tablero tablero)
     {
-        var query = $"INSERT INTO tablero (id, id_usuario_propietario, nombre, descripcion) VALUES (@id,@id_usuario_propietario,@descripcion)";
+        var query = $"INSERT INTO tablero (id, id_usuario_propietario, nombre, descripcion) VALUES (@id,@id_usuario_propietario, @nombre, @descripcion)";
         using(SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
         {
             connection.Open();
@@ -33,12 +33,18 @@ public class TableroRepository : ITableroRepository
     
     public void ModificarTablero(int id, Tablero tablero)
     {
-        SQLiteConnection connection = new SQLiteConnection(cadenaConexion);
-        SQLiteCommand command = connection.CreateCommand();
-        command.CommandText =  $"UPDATE tablero SET id = '{tablero.Id}', id_usuario_propietario = '{tablero.IdUsuarioPropietario}', nombre = '{tablero.Nombre}', descripcion = '{tablero.Descripcion}';";
-        connection.Open();
-        command.ExecuteNonQuery();
-        connection.Close();
+        var query = @"UPDATE Tablero SET nombre = @nombre, descripcion = @descripcion, id_usuario_propietario = @idPropietario WHERE id = @id;";
+        using (SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
+        {
+            connection.Open();
+            var command = new SQLiteCommand(query, connection);
+            command.Parameters.Add(new SQLiteParameter("@nombre", tablero.Nombre));
+            command.Parameters.Add(new SQLiteParameter("@descripcion", tablero.Descripcion));
+            command.Parameters.Add(new SQLiteParameter("@idPropietario", tablero.IdUsuarioPropietario));
+            command.Parameters.Add(new SQLiteParameter("@id", id));
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 
     public Tablero ObtenerTableroPorId(int idTablero)
@@ -61,7 +67,7 @@ public class TableroRepository : ITableroRepository
         }
         connection.Close();
 
-        return (tablero);
+        return tablero;
     }
 
     public List<Tablero> ListarTableros()
@@ -98,7 +104,7 @@ public class TableroRepository : ITableroRepository
         {
             connection.Open();
             var command = new SQLiteCommand(query, connection);
-            command.Parameters.Add(new SQLiteParameter("@id", idUsuario));
+            command.Parameters.Add(new SQLiteParameter("@idUsuario", idUsuario));
             var reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -132,5 +138,33 @@ public class TableroRepository : ITableroRepository
             connection.Close();
         }
     }
+
+        public Tablero ObtenerTableroPorNombre(string nombre)
+        {
+            var query = "SELECT * FROM Tablero WHERE nombre = @nombre";
+            using (SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
+            {
+                connection.Open();
+                var tablero = new Tablero();
+                var command = new SQLiteCommand(query, connection);
+                command.Parameters.Add(new SQLiteParameter("@nombre", nombre));
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    tablero.Id = Convert.ToInt32(reader["id"]);
+                    tablero.IdUsuarioPropietario = Convert.ToInt32(reader["id_usuario_propietario"]);
+                    tablero.Nombre = reader["nombre"].ToString();
+                    tablero.Descripcion = reader["descripcion"].ToString();
+                }
+                connection.Close();
+                    // Lanzar una excepción si no se encontró ningún tablero
+                if (tablero.Id == 0)
+                {
+                    throw new Exception("Tablero no encontrado");
+                }
+                return tablero;
+            }
+        }
 }
 

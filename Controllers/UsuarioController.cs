@@ -1,26 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using tp9.Models;
-using tp9.repos;
+using tl2_tp10_2023_Santialru.Models;
+using tl2_tp10_2023_Santialru.repos;
+using tl2_tp10_2023_Santialru.ViewModels;
 
-namespace tp9.controllers
+namespace tl2_tp10_2023_Santialru.controllers
 {
     [Route("[controller]")]
     public class UsuarioController : Controller
     {
         private readonly ILogger<UsuarioController> _logger;
-        private UsuarioRepository manejo;
-
-        public UsuarioController(ILogger<UsuarioController> logger)
+        private readonly IUsuarioRepository _repositorioUsuario;
+        public UsuarioController(ILogger<UsuarioController> logger, IUsuarioRepository repostorioUsuario)
         {
             _logger = logger;
-            manejo = new UsuarioRepository();
+            _repositorioUsuario = repostorioUsuario;
 
         }
 
@@ -28,7 +29,8 @@ namespace tp9.controllers
 
         public IActionResult Index()
         {
-            var usuarios = manejo.ListarUsuarios();
+            if (NoEstaLogeado()) return RedirectToRoute(new { controller = "Home", action = "Index"});
+            var usuarios = _repositorioUsuario.ListarUsuarios();
             return View(usuarios);
         }
 
@@ -42,14 +44,25 @@ namespace tp9.controllers
         [Route("CrearUsuario")]
         public IActionResult CrearUsuario() 
         {
-            return View(new Usuario());
+            if (NoEstaLogeado() || ObtenerRolUsuario() != "administrador") return RedirectToAction("Index");
+            return View(new CrearUsuarioViewModel());
         }
 
         [HttpPost]
         [Route("CrearUsuario")]
-        public IActionResult CrearUsuario(Usuario u)
+        public IActionResult CrearUsuario(CrearUsuarioViewModel u)
         {
-            manejo.CrearUsuario(u);
+            if(!ModelState.IsValid) return RedirectToAction("Index");
+            try
+            {
+                 var usuario = new Usuario(u.NombreDeUsuario,u.Contrasenia,u.Rol);
+                _repositorioUsuario.CrearUsuario(usuario);
+               
+            }
+            catch (Exception e)
+            {
+               _logger.LogError(e.ToString());
+            }
             return RedirectToAction("Index");
         }
 
@@ -57,18 +70,34 @@ namespace tp9.controllers
         [Route("EditarUsuario")]
         public IActionResult EditarUsuario(int id)
         {
-            var usuario = manejo.ObtenerUsuarioPorId(id);
-            return View(usuario);
+            if(ObtenerRolUsuario() != "administrador") return RedirectToAction("Index");
+            var u = _repositorioUsuario.ObtenerUsuarioPorId(id);
+            var VmUsuario = new EditarUsuarioViewModel(u.Id,u.NombreDeUsuario,u.Contrasenia,u.Rol);
+            return View(VmUsuario);
         }
 
         [HttpPost]
         [Route("EditarUsuario")]
         public IActionResult EditarUsuario(Usuario usuario)
         {   
-            var usuarioMod = manejo.ObtenerUsuarioPorId(usuario.Id);
-            usuarioMod.NombreDeUsuario = usuario.NombreDeUsuario;
+            if(!ModelState.IsValid) return RedirectToAction("Index");
+            try
+            {
+                var usuarioMod = _repositorioUsuario.ObtenerUsuarioPorId(usuario.Id);
+                usuarioMod.NombreDeUsuario = usuario.NombreDeUsuario;
+                if (usuario.Contrasenia != null)
+                {
+                    usuarioMod.Contrasenia = usuario.Contrasenia;
+                }
+                usuarioMod.Rol= usuario.Rol;
 
-            manejo.ModificarUsuario(usuario.Id,usuario);
+                _repositorioUsuario.ModificarUsuario(usuario.Id,usuarioMod); 
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+            }
+            
 
             return RedirectToAction("Index");
         }
@@ -77,10 +106,34 @@ namespace tp9.controllers
         [Route("EliminarUsuario")]
         public IActionResult EliminarUsuario(int id)
         {
-            manejo.EliminarUsuario(id);
+            if(ObtenerRolUsuario() != "admin"){
+                return RedirectToAction("Index");
+            }
+            try
+            {
+                _repositorioUsuario.EliminarUsuario(id);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.ToString());
+            }
             return RedirectToAction("Index");
 
         }
+        private string ObtenerRolUsuario()
+        {
+            // Verifica si existe la sesión y si contiene el rol del usuario.
+            if (HttpContext.Session.TryGetValue("Rol", out var rolBytes))
+            {
+                // Convierte los bytes almacenados en la sesión de nuevo a una cadena.
+                var rol = Encoding.UTF8.GetString(rolBytes);
+                return rol;
+            }
+
+            // Si no se encuentra el rol en la sesión, retorna una cadena vacía o nula.
+            return string.Empty;
+        }
+        private bool NoEstaLogeado() => string.IsNullOrEmpty(HttpContext.Session.GetString("Usuario")); 
 
     }
 }

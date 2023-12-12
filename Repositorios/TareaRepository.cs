@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using tp9.Models;
+using tl2_tp10_2023_Santialru.Models;
 
-namespace tp9.repos
+namespace tl2_tp10_2023_Santialru.repos
 {
-    public class TareaRepository
+    public class TareaRepository :ITareaRepository
     {
-        private string cadenaConexion = "Data Source=DB/kanban.db;Cache=Shared";
+        private string cadenaConexion = "Data Source=DB/kanbanV2.db;Cache=Shared";
 
         public Tarea CrearTarea(int idTablero, Tarea tarea)
         {
-        var query = @"INSERT INTO Tarea (Id_Tablero, Nombre, Estado, Descripcion, Color, Id_Usuario_Asignado) 
-                    VALUES (@idTablero, @nombre, @estado, @descripcion, @color, @idUsuarioAsignado)";
+            var query = @"INSERT INTO Tarea (Id_Tablero, Nombre, Estado, Descripcion, Color, Id_Usuario_Propietario) 
+                    VALUES (@idTablero, @nombre, @estado, @descripcion, @color, @idUsuarioPropietario)";
 
             using (SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
             {
@@ -42,7 +42,7 @@ namespace tp9.repos
                             Estado = @estado,
                             Descripcion = @descripcion,
                             Color = @color,
-                            Id_Usuario_Asignado = @idUsuarioAsignado
+                            Id_Usuario_Propietario = @idUsuarioPropietario
                         WHERE Id = @id";
 
             using (SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
@@ -246,5 +246,58 @@ namespace tp9.repos
 
             return cantidadTareas;
         }
+
+
+
+
+        public List<Tarea> ListarTareasPorTableros(List<int> idsTableros)
+        {
+            var tareas = new List<Tarea>();
+
+            if (idsTableros == null || !idsTableros.Any())
+            {
+                throw new ArgumentException("La lista de IDs de tableros no puede ser nula o vacía");
+            }
+
+            // Construir la cadena IN dinámicamente
+            var inClause = string.Join(",", idsTableros);
+
+            // Consulta SQL con la cadena IN construida
+            var query = $"SELECT * FROM Tarea WHERE Id_Tablero IN ({inClause})";
+
+            using (SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
+            {
+                connection.Open();
+                var command = new SQLiteCommand(query, connection);
+
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    // Si no hay filas, lanzar una excepción
+                    if (!reader.HasRows)
+                    {
+                        connection.Close();
+                        throw new Exception("No se encontraron tareas para los tableros especificados");
+                    }
+
+                    while (reader.Read())
+                    {
+                        var tarea = new Tarea
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            IdTablero = Convert.ToInt32(reader["Id_Tablero"]),
+                            Nombre = reader["Nombre"].ToString(),
+                            Estado = Enum.Parse<Tarea.EstadoTarea>(reader["Estado"].ToString()),
+                            Descripcion = reader["Descripcion"].ToString(),
+                            Color = reader["Color"].ToString(),
+                            IdUsuarioPropietario = Convert.ToInt32(reader["Id_Usuario_Propietario"])
+                        };
+                        tareas.Add(tarea);
+                    }
+                }
+            }
+
+            return tareas;
+        }
+
     }
 }

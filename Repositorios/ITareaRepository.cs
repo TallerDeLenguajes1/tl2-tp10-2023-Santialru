@@ -1,14 +1,15 @@
 using System.Collections.Generic;
-using tp9.Models;
+using tl2_tp10_2023_Santialru.Models;
 
-namespace tp9.repos;
+namespace tl2_tp10_2023_Santialru.repos;
 public interface ITareaRepository
 {
-    Tarea CrearTareaEnTablero(int idTablero, Tarea tarea);
-    Tarea ModificarTarea(int id, Tarea tarea);
+    Tarea CrearTarea(int idTablero, Tarea tarea);
+    void ModificarTarea(int id, Tarea tarea);
     Tarea ObtenerTareaPorId(int id);
-    List<Tarea> ListarTareasAsignadasAUsuario(int idUsuario);
+    List<Tarea> ListarTareasDeUsuario(int idUsuario);
     List<Tarea> ListarTareasDeTablero(int idTablero);
     void EliminarTarea(int idTarea);
     void AsignarUsuarioATarea(int idUsuario, int idTarea);
+    List<Tarea> ListarTareasPorTableros(List<int> idsTableros);
 }

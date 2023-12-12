@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace tp11.ViewModels
+namespace tl2_tp10_2023_Santialru.ViewModels
 {
     public class LoginViewModel
     {
